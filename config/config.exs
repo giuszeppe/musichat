@@ -52,7 +52,7 @@ config :ueberauth, Ueberauth,
   providers: [
     spotify: {Ueberauth.Strategy.Spotify, [default_scope: "playlist-read-private"]}
   ]
-config :ueberauth, Ueberauth.Strategy.Patreon.OAuth,
+config :ueberauth, Ueberauth.Strategy.Spotify.OAuth,
   client_id: System.get_env("SPOTIFY_CLIENT_ID"),
   client_secret: System.get_env("SPOTIFY_CLIENT_SECRET")
 

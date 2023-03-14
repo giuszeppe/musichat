@@ -1,6 +1,7 @@
 defmodule Ueberauth.Strategy.Spotify.OAuth do
   use OAuth2.Strategy
 
+
   @defaults [
     strategy: __MODULE__,
     site: "https://open.spotify.com/",
@@ -15,7 +16,7 @@ defmodule Ueberauth.Strategy.Spotify.OAuth do
     # This is where we grab the CLient ID and Client Secret we created earilier
     config =
       :ueberauth
-      |> Application.fetch_env!(Ueberauth.Strategy.Patreon.OAuth)
+      |> Application.fetch_env!(Ueberauth.Strategy.Spotify.OAuth)
       |> check_config_key_exists(:client_id)
       |> check_config_key_exists(:client_secret)
 

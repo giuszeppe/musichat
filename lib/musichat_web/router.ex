@@ -8,6 +8,7 @@ defmodule MusichatWeb.Router do
     plug :put_root_layout, {MusichatWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Ueberauth
   end
 
   pipeline :api do
@@ -18,6 +19,14 @@ defmodule MusichatWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+  end
+
+  scope "/auth", MusichatWeb do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
+    post "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.

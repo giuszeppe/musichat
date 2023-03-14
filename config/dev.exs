@@ -1,11 +1,14 @@
 import Config
 
+import_config "dev.secret.exs"
+
 # Configure your database
 config :musichat, Musichat.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
   database: "musichat_dev",
+  port: 5500,
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
