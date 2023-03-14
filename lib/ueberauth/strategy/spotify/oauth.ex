@@ -9,7 +9,7 @@ defmodule Ueberauth.Strategy.Spotify.OAuth do
     token_url: "https://accounts.spotify.com/api/token",
     redirect_uri: "http://localhost:4000/auth/spotify/callback",
     token_method: :post,
-    scope: "playlist-read-private"
+    scope: "playlist-read-private user-read-email"
   ]
 
   def client(opts \\ []) do

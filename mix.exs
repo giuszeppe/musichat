@@ -7,7 +7,7 @@ defmodule Musichat.MixProject do
       version: "0.1.0",
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:gettext] ++ Mix.compilers(),
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -33,6 +33,7 @@ defmodule Musichat.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:bcrypt_elixir, "~> 3.0"},
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
@@ -51,6 +52,7 @@ defmodule Musichat.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:ueberauth, "~> 0.7"},
       {:oauth2, "~> 2.0"},
+      {:httpoison, "~> 2.0"}
     ]
   end
 

@@ -6,9 +6,9 @@ defmodule Ueberauth.Strategy.Spotify do
 
   def handle_request!(conn) do
     params =
-      []
+      [scope: "user-read-email user-top-read"]
       |> with_state_param(conn)
-     # Will invoke the OAuth Patreon module we will define next
+     # Will invoke the OAuth Spotify module we will define next
 
     module = option(conn, :oauth2_module)
      # Performs the redirect to Patreon to REQUEST access
