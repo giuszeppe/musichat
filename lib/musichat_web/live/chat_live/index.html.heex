@@ -1,0 +1,36 @@
+<div>
+  <h1>ChatLive - <%=  @current_chat%></h1>
+  <div style="display: flex; flex-direction: row; justify-content:space-between">
+    <div>
+      <h1>Users List</h1>
+      <div>
+        <%= for u <- Accounts.get_users() do %>
+        <p phx-click="change_chat" phx-value-username={u.email}><%= u.email %></p>
+        <% end %>
+      </div>
+    </div>
+    <div style="width:70%;">
+      <div
+        class="messages"
+        style="
+          border: 1px solid #eee;
+          height: 400px;
+          overflow: scroll;
+          margin-bottom: 8px;
+        "
+      >
+        <%= for m <- Enum.reverse @messages do %>
+          <%= if m.sender do %>
+            <p style="margin: 2px; text-align:right"><b><%= m.name %></b>: <%= m.text %></p>
+          <% else %>
+            <p style="margin: 2px; text-align:left"><b><%= m.name %></b>: <%= m.text %></p>
+          <% end %>
+        <% end %>
+      </div>
+      <form phx-submit="send">
+        <input type="text" name="text" />
+        <button type="submit">Send</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,7 @@ defmodule MusichatWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/chat", ChatLive.Index
   end
 
   scope "/auth", MusichatWeb do

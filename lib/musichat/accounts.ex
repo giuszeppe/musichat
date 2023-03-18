@@ -44,6 +44,19 @@ defmodule Musichat.Accounts do
     if User.valid_password?(user, password), do: user
   end
 
+    @doc """
+  Gets a all the users.
+
+
+  ## Examples
+
+      iex> get_users()
+      [%User{}, %User{}]
+
+  """
+  def get_users(), do: Repo.all(User)
+
+
   @doc """
   Gets a single user.
 
