@@ -14,12 +14,19 @@ defmodule MusichatWeb.AuthController do
 
   # Successful callback OAuth phase
   def callback(%{assigns: %{ueberauth_auth: %{provider: :spotify, info: user_info} = auth}} = conn, _params) do
-    user_email = HTTPoison.get!("https://api.spotify.com/v1/me",%{authorization: "Bearer #{auth.credentials.token}"})
+    response = HTTPoison.get!("https://api.spotify.com/v1/me",%{authorization: "Bearer #{auth.credentials.token}"})
     |> Map.get(:body)
     |> Jason.decode!()
+
+    user_email = response
     |> Map.get("email")
-    |> IO.inspect()
-    user_params = %{email: user_email, password: random_password()}
+
+    display_name = response
+    |> Map.get("display_name")
+    IO.inspect(response)
+
+    user_params = %{username: display_name,email: user_email, password: random_password()}
+
     case Accounts.fetch_or_create_user(user_params) do
       {:ok, user} ->
         UserAuth.log_in_user(conn, user)
